@@ -1,0 +1,34 @@
+.button {
+  border: none;
+  outline: none;
+  padding-inline: 1.5rem;
+  padding-block: 0.7rem;
+  border-radius: 0.6rem;
+  margin-block-start: 1.3rem;
+  cursor: pointer;
+
+  font-size: 1.15rem;
+  color: white;
+
+  transition: background 0.4s ease-in-out,
+              transform 0.2s ease;
+
+  &.primary-button {
+    background: linear-gradient(
+      90deg,
+      #b20a26 10%,
+      #e01a5c 50%,
+      #d73bcf 85%,
+      #813ef5 100%
+    );
+    opacity:80%;
+  }
+
+  &.primary-button:hover {
+    opacity:90%;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}

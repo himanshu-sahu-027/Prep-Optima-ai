@@ -1,0 +1,90 @@
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-container {
+    min-width: 350px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .auth-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+
+        gap: 0.1rem;
+
+        label {
+          font-size: 1rem;
+          font-weight: 400;
+        }
+
+        .input-wrapper {
+          padding: 2px;
+          border-radius: 0.45rem;
+
+          background: transparent;
+
+          transition: background 0.3s ease;
+
+          &:focus-within {
+            background: linear-gradient(
+              90deg,
+              rgba(178, 10, 38, 0.75) 10%,
+              rgba(224, 26, 92, 0.65) 50%,
+              rgba(215, 59, 207, 0.65) 85%,
+              rgba(129, 62, 245, 0.65) 100%
+            );
+          }
+
+          input {
+            width: 100%;
+
+            padding: 0.7rem 1rem;
+
+            border: none;
+            outline: none;
+
+            border-radius: calc(0.45rem - 2px);
+
+            background: #e2dfdf;
+            color: #111827;
+
+            &::placeholder {
+              color: #6b7280;
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      font-size: 1rem;
+
+      a {
+        color: #e1034d;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

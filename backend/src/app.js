@@ -1,0 +1,19 @@
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+const app = express();
+
+
+app.use(express.json());  // Middleware to parse JSON requests
+app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }) );
+
+
+// import all the Routers
+import authRouter from "./routes/auth.routes.js";
+
+// using all the routers
+app.use("/api/auth",authRouter);
+
+export default app;
