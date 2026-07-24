@@ -12,8 +12,10 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }) );
 
 // import all the Routers
 import authRouter from "./routes/auth.routes.js";
+import interviewRouter from "./routes/interview.routes.js";
 
 // using all the routers
 app.use("/api/auth",authRouter);
+app.use("/api/interview",interviewRouter);
 
 export default app;
