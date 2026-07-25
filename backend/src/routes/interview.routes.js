@@ -1,7 +1,13 @@
 import express from "express";
 
 // import controller
-import { generateInterviewReportController } from "../controllers/interview.controller.js";
+import { 
+    generateInterviewReportController,
+    getInterviewReportByIdController,
+    getAllInterviewReportsController,
+    
+
+ } from "../controllers/interview.controller.js";
 
 // import middlewares
 import authUser from "../middlewares/auth.middleware.js";
@@ -17,6 +23,19 @@ const interviewRouter=express.Router();
  */
 interviewRouter.post("/", authUser, uploadPdf.single("resume")  , generateInterviewReportController);
 
+/**
+ * @route GET /api/interview/report/:interviewId
+ * @desc Get an interview report by its interviewId.
+ * @access Private
+ */
+interviewRouter.get("/report/:interviewId", authUser, getInterviewReportByIdController);
+ 
 
+/**
+ * @route GET /api/interview
+ * @desc Get all interview reports for the authenticated user ( logged in user ).
+ * @access Private
+ */
+interviewRouter.get("/", authUser, getAllInterviewReportsController);
 
 export default interviewRouter;

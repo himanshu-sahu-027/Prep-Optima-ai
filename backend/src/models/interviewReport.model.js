@@ -94,22 +94,29 @@ const skillGapSchema = new mongoose.Schema(
   },
 );
 
-const preparationPlanSchema = new mongoose.Schema({
-  day: {
-    type: Number,
-    required: [true, "Day is required"],
-  },
-  focus: {
-    type: String,
-    required: [true, "Focus is required"],
-  },
-  tasks: [
+const preparationPlanSchema = new mongoose.Schema(
     {
-      type: String,
-      required: [true, "Task is required"],
+        day: {
+            type: Number,
+            required: [true, "Day is required"],
+        },
+
+        focus: {
+            type: String,
+            required: [true, "Focus is required"],
+        },
+
+        tasks: [
+            {
+                type: String,
+                required: [true, "Task is required"],
+            },
+        ],
     },
-  ],
-});
+    {
+        _id: false,
+    }
+);
 
 const interviewReportSchema = new mongoose.Schema(
   {
