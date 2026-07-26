@@ -1,0 +1,134 @@
+@use "sass:color";
+@use "../../../style/brand.scss" as *;
+
+.loading-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #0d0f13;
+  padding: 1rem;
+}
+
+.loading-card {
+  background: #1a1f27;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  &__spinner {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.75rem;
+  }
+
+  &__spinner-outer {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+    border: 4px solid rgba($brand-color-mid, 0.15);
+    border-top-color: $brand-color-mid;
+
+    animation: loading-spin 1.1s linear infinite;
+  }
+
+  &__spinner-inner {
+    position: absolute;
+
+    inset: 3px;
+
+    border-radius: 50%;
+    border: 3px solid rgba($brand-color-start, 0.12);
+    border-bottom-color: color.adjust($brand-color-mid, $lightness: 0%);
+
+    animation: loading-spin-reverse 1.5s linear infinite;
+  }
+
+  &__heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin: 0 0 0.75rem;
+    line-height: 1.3;
+  }
+
+  &__description {
+    font-size: 0.925rem;
+    color: #9ca3af;
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+    max-width: 380px;
+  }
+
+  &__footer-text {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0 0 0.25rem;
+    line-height: 1.5;
+
+    &--subtle {
+      color: #4b5563;
+      font-size: 0.775rem;
+    }
+  }
+
+  &__status {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: $brand-color-mid;
+    animation: loading-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-spin-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes loading-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .loading-card {
+    padding: 2rem 1.5rem;
+
+    &__heading {
+      font-size: 1.25rem;
+    }
+
+    &__description {
+      font-size: 0.85rem;
+    }
+  }
+}

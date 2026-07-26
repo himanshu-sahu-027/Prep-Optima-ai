@@ -20,7 +20,7 @@ export const useInterview = () => {
         throw new Error("useInterview must be used within an InterviewProvider")
     }
 
-    const { loading, setLoading, report, setReport, reports, setReports } = context
+    const { loading, setLoading, report, setReport, reports, setReports, isGenerating, setIsGenerating } = context
 
 
     /**
@@ -125,6 +125,6 @@ export const useInterview = () => {
         }
     }, [ interviewId ])
 
-    return { loading, report, reports, generateReport, getReportById, getReports }
+    return { loading, report, reports, generateReport, getReportById, getReports, isGenerating, setIsGenerating }
 
 }

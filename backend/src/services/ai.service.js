@@ -8,7 +8,9 @@ const ai = new GoogleGenAI({
     apiKey: envConfig.GOOGLE_GEMINI_API_KEY,
 });
 
-
+/**
+ * @description zod schema for the interview report structure, including match score, technical and behavioral questions, skill gaps, preparation plan, and title.
+ */
 const interviewReportSchema = z.object({
 
     matchScore: z
@@ -56,8 +58,7 @@ const interviewReportSchema = z.object({
 
 /**
  * @name generateContentWithRetry
- * @description Calls Gemini API and retries when the service
- * is temporarily unavailable due to high demand.
+ * @description Calls Gemini API and retries when the service is temporarily unavailable due to high demand.
  *
  * Maximum attempts: 4
  * Retry delays: 1s -> 2s -> 4s
@@ -117,9 +118,7 @@ async function generateContentWithRetry(request, maxAttempts = 4) {
 
 /**
  * @name generateInterviewReport
- * @description Generates a personalized interview preparation
- * report using the candidate's resume, self-description,
- * and job description.
+ * @description Generates a personalized interview preparation report using the candidate's resume, self-description, and job description.
  */
 async function generateInterviewReport({
     resume,
@@ -128,25 +127,41 @@ async function generateInterviewReport({
 }) {
 
     const prompt = `
-You are an AI interview preparation assistant.
+                    You are an AI interview preparation assistant.
 
-Generate a personalized interview preparation report.
+                    Generate a personalized interview preparation report.
 
-Resume:
-${resume}
+                    Resume:
+                    ${resume}
 
-Self Description:
-${selfDescription}
+                    Self Description:
+                    ${selfDescription}
 
-Job Description:
-${jobDescription}
+                    Job Description:
+                    ${jobDescription}
 
-Generate technical interview questions, behavioral questions,
-skill gaps, and a practical preparation plan based specifically
-on the candidate and target job.
+                    Generate technical interview questions, behavioral questions,
+                    skill gaps, and a practical preparation plan based specifically
+                    on the candidate and target job.
+                    Follow the provided JSON response schema exactly.
 
-Follow the provided JSON response schema exactly.
-`;
+                    IMPORTANT RULES:
+
+                    1. title must contain ONLY the job title extracted from the job description.
+
+                    Correct examples:
+                    - Software Engineer (Frontend)
+                    - Backend Developer
+                    - Java Full Stack Developer
+                    - React Developer
+
+                    Incorrect examples:
+                    - Interview Preparation Report for xyz
+                    - Interview Report for Software Engineer
+                    - xyz - Software Engineer (Frontend)
+                    - Software Engineer (Frontend) Interview Preparation Report
+
+                    The title field should ONLY contain the actual job title and nothing else.`;
 
     const jsonSchema = z.toJSONSchema(interviewReportSchema);
 
