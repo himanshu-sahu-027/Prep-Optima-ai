@@ -16,9 +16,9 @@ export default function Home() {
       <Hero />
       <ProductPreview />
       <HowItWorks />
+      <ProcessFlow />
       <Features />
       <WhyPrepOptima />
-      <ProcessFlow />
       <FinalCTA />
       <Footer />
     </div>

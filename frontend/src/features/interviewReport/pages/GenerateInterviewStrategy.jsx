@@ -58,7 +58,7 @@ function GenerateInterviewStrategy() {
   };
 
   return (
-    <div className="home-page">
+    <div className="generateInterviewStrategy-page">
       {/* Page Header */}
       <header className="page-header">
         <h1>

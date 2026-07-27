@@ -1,0 +1,20 @@
+$brand-gradient: linear-gradient(
+    60deg,
+    rgba(178, 10, 38, 0.75) 10%,
+    rgba(224, 26, 92, 0.65) 50%,
+    rgba(215, 59, 207, 0.65) 85%,
+    rgba(129, 62, 245, 0.65) 100%
+);
+
+$brand-gradient-solid: linear-gradient(
+    60deg,
+    #b20a26 10%,
+    #e01a5c 50%,
+    #d73bcf 85%,
+    #813ef5 100%
+);
+
+$brand-color-start: #b20a26;
+$brand-color-mid: #e01a5c;
+$brand-color-accent: #d73bcf;
+$brand-color-end: #813ef5;
