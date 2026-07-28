@@ -15,7 +15,6 @@ export function useAuth() {
       const data = await login({ email, password });
       setUser(data.user);
     } catch (err) {
-
     } finally {
       setLoading(false);
     }
@@ -28,41 +27,37 @@ export function useAuth() {
       const data = await register({ username, email, password });
       setUser(data.user);
     } catch (err) {
-
     } finally {
       setLoading(false);
     }
   };
 
-  const handleLogout = async ({}) => {
+  const handleLogout = async () => {
     setLoading(true);
 
     try {
       const data = await logout();
       setUser(null);
     } catch (err) {
-
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
+    const getAndSetUser = async () => {
+      try {
+        console.log("use effect called");
+        const data = await getMe();
+        setUser(data.user);
+      } catch (err) {
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        const getAndSetUser = async () => {
-            try {
-
-                console.log("use effect called")
-                const data = await getMe()
-                setUser(data.user)
-            } catch (err) { } finally {
-                setLoading(false)
-            }
-        }
-
-        getAndSetUser()
-
-    }, [])
+    getAndSetUser();
+  }, []);
 
   return { user, loading, handleRegister, handleLogin, handleLogout };
 }

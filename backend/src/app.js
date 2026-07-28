@@ -4,18 +4,18 @@ import cors from "cors";
 
 const app = express();
 
+app.set("trust proxy", 1);
 
-app.use(express.json());  // Middleware to parse JSON requests
+app.use(express.json()); // Middleware to parse JSON requests
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }) );
-
+app.use(cors({ origin: envConfig.FRONTEND_URL, credentials: true, }));
 
 // import all the Routers
 import authRouter from "./routes/auth.routes.js";
 import interviewRouter from "./routes/interview.routes.js";
 
 // using all the routers
-app.use("/api/auth",authRouter);
-app.use("/api/interview",interviewRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/interview", interviewRouter);
 
 export default app;

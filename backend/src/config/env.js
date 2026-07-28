@@ -6,13 +6,14 @@ export const envConfig = {
     MONGO_DB_NAME: process.env.MONGO_DB_NAME,
     JWT_SECRET: process.env.JWT_SECRET,
     GOOGLE_GEMINI_API_KEY: process.env.GOOGLE_GEMINI_API_KEY,
+    FRONTEND_URL:process.env.FRONTEND_URL,
 };
 
 
 
 
 
-const requiredEnvVars = ["MONGO_URI","JWT_SECRET","GOOGLE_GEMINI_API_KEY"];
+const requiredEnvVars = ["MONGO_URI","JWT_SECRET","GOOGLE_GEMINI_API_KEY","FRONTEND_URL"];
 
 for (const varName of requiredEnvVars) {
     if (!process.env[varName]) {

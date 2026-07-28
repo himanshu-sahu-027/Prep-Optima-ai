@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from "react-router";
+import { useAuth } from "../../../auth/hooks/useAuth";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -10,6 +11,8 @@ const navItems = [
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { user, handleLogout } = useAuth();
 
   return (
     <nav className="home-navbar">
@@ -49,12 +52,25 @@ export default function Navbar() {
         </ul>
 
         <div className="home-navbar__actions">
-          <button
-            className="home-navbar__btn home-navbar__btn--login"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </button>
+          {user ? (
+            <button
+              className="home-navbar__btn home-navbar__btn--login"
+              onClick={async () => {
+                await handleLogout();
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              className="home-navbar__btn home-navbar__btn--login"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </button>
+          )}
+
           <button
             className="home-navbar__btn home-navbar__btn--get-started"
             onClick={() => navigate("/generate-interview-strategy")}
