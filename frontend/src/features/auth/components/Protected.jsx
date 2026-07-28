@@ -1,20 +1,28 @@
 import { useAuth } from "../hooks/useAuth";
-import { Navigate } from "react-router";
-import React from 'react'
+import { Navigate, useLocation } from "react-router";
+import React from 'react';
 
-const Protected = ({children}) => {
-    const { loading,user } = useAuth()
+import Loader from "../../../sharedComponents/Loader";
 
+const Protected = ({ children }) => {
+    const { loading, user } = useAuth();
+    const location = useLocation();
 
-    if(loading){
-        return (<main><h1>Loading...</h1></main>)
+    if (loading) {
+        return <Loader/>;
     }
 
-    if(!user){
-        return <Navigate to={'/login'} />
+    if (!user) {
+        return (
+            <Navigate
+                to="/login"
+                state={{ from: location }}
+                replace
+            />
+        );
     }
-    
-    return children
-}
+
+    return children;
+};
 
 export default Protected;

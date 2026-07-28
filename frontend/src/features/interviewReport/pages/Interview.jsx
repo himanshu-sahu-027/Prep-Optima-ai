@@ -8,6 +8,9 @@ import RoadMapDay from '../components/interviewPageComponents/RoadMapDay'
 import MatchScore from '../components/interviewPageComponents/MatchScore'
 import SkillGaps from '../components/interviewPageComponents/SkillGaps'
 
+import Loader from '../../../sharedComponents/Loader.jsx'
+
+
 // ── Main Component ────────────────────────────────────────────────────────────
 function Interview () {
     const [ activeNav, setActiveNav ] = useState('technical')
@@ -23,11 +26,7 @@ function Interview () {
 
 
     if (loading || !report) {
-        return (
-            <main className='loading-screen'>
-                <h1>Loading your interview plan...</h1>
-            </main>
-        )
+        return <Loader/>;
     }
 
     const scoreColor =

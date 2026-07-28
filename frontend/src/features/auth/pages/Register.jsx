@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 
+import Loader from "../../../sharedComponents/Loader";
+
 function Register() {
 
   const { loading, handleRegister } = useAuth();
@@ -20,11 +22,7 @@ function Register() {
   };
 
   if(loading){
-    return(
-      <main>
-        <h1> Loading..... </h1>
-      </main>
-    )
+    return <Loader/>;
   }
 
   return (
